@@ -41,7 +41,7 @@ $(function(){
         for(var i = 0; i < 4 ; i++){
             tempW = 40;
             for(var j = 0; j < 4 ; j++){
-                if(rndArea[i][j])
+                if(rndArea[i][j] && zorluk > j)
                     $("#main").prepend(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`);
                 tempW += 220;
             }
