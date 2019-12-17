@@ -6,6 +6,7 @@ var count = 1;
 const mainW = 820;
 const mainH = 700;
 
+var div = [];
 var rndArea = [];
 var selected = 0;
 
@@ -22,7 +23,7 @@ $(function () {
 
         zorluk = diff.dif.value;
 
-        while (selected != zorluk) {
+        while(selected != zorluk){
             var i = parseInt(Math.random() * 3 + 1);
             var j = parseInt(Math.random() * 3 + 1);
         
@@ -31,26 +32,34 @@ $(function () {
                 selected++;
             }
         }
+        
 
         $("#cover").fadeOut(1000);
         $("#main").animate({ "background-color": "rgba(0,0,0,0)" }, 'slow', function () {
             $("#main").css({ "background-image": `url("memorybackground.jpg")` });
-
         });
 
         for (var i = 0; i < 4; i++) {
             tempW = 40;
             for (var j = 0; j < 4; j++) {
-                if (rndArea[i][j] && zorluk >= j) {
-                    var div = $(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`)
+                if (rndArea[i][j]) {
+                    console.log(i + " " + j);
+                    var tempDiv = $(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`)
                         .on('click', function () {
-                            alert("osman");
+                            //to be filled
                         });
-                    $("#main").prepend(div);
+                    $("#main").prepend(tempDiv);
+
+                    div.push(tempDiv);
                 }
                 tempW += 220;
             }
             tempH += 180;
         }
+        
+        for(var i = 0; i < div.length;i++){
+            div[i].text(i+1);
+        }
+
     });
 });

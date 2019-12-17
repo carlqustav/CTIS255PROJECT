@@ -101,10 +101,14 @@ button:hover{
 }
 
 .white{
+    text-align: center;
     box-shadow: 0px 0px 25px 0px rgba(255,255,255,1);
     position: absolute;
     width: 120px;
     height: 120px;
+    line-height: 120px;
+    font-size: 30px;
+    color:darkgray;
     border-radius: 10px;
     background-color: white;
 }
