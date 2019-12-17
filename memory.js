@@ -16,21 +16,21 @@ for (var i = 0; i < 4; i++) {
     }
 }
 
-while (selected != zorluk) {
-    var i = parseInt(Math.random() * 3 + 1);
-    var j = parseInt(Math.random() * 3 + 1);
-
-    if (!rndArea[i][j]) {
-        rndArea[i][j] = true;
-        selected++;
-    }
-}
-
 $(function () {
 
     $("button").click(function () {
 
         zorluk = diff.dif.value;
+
+        while (selected != zorluk) {
+            var i = parseInt(Math.random() * 3 + 1);
+            var j = parseInt(Math.random() * 3 + 1);
+        
+            if (!rndArea[i][j]) {
+                rndArea[i][j] = true;
+                selected++;
+            }
+        }
 
         $("#cover").fadeOut(1000);
         $("#main").animate({ "background-color": "rgba(0,0,0,0)" }, 'slow', function () {
