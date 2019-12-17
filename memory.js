@@ -9,48 +9,48 @@ const mainH = 700;
 var rndArea = [];
 var selected = 0;
 
-for(var i = 0; i < 4 ; i++){
+for (var i = 0; i < 4; i++) {
     rndArea[i] = [];
-    for(var j = 0; j < 4 ; j++){
+    for (var j = 0; j < 4; j++) {
         rndArea[i][j] = false;
     }
 }
 
-while(selected != 4){
-    var i = parseInt(Math.random()*3+1);
-    var j = parseInt(Math.random()*3+1);
+while (selected != zorluk) {
+    var i = parseInt(Math.random() * 3 + 1);
+    var j = parseInt(Math.random() * 3 + 1);
 
-    if(!rndArea[i][j]){
+    if (!rndArea[i][j]) {
         rndArea[i][j] = true;
         selected++;
     }
 }
 
-$(function(){
+$(function () {
 
-    $("button").click(function() {
+    $("button").click(function () {
 
-        zorluk = diff.dif.value;        
+        zorluk = diff.dif.value;
 
         $("#cover").fadeOut(1000);
-        $("#main").animate({"background-color":"rgba(0,0,0,0)"},'slow', function(){
-            $("#main").css({"background-image":`url("memorybackground.jpg")`});
+        $("#main").animate({ "background-color": "rgba(0,0,0,0)" }, 'slow', function () {
+            $("#main").css({ "background-image": `url("memorybackground.jpg")` });
 
         });
-        
-        for(var i = 0; i < 4 ; i++){
+
+        for (var i = 0; i < 4; i++) {
             tempW = 40;
-            for(var j = 0; j < 4 ; j++){
-                if(rndArea[i][j] && zorluk > j)
-                    $("#main").prepend(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`);
+            for (var j = 0; j < 4; j++) {
+                if (rndArea[i][j] && zorluk >= j) {
+                    var div = $(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`)
+                        .on('click', function () {
+                            alert("osman");
+                        });
+                    $("#main").prepend(div);
+                }
                 tempW += 220;
             }
-            tempH += 180;      
-        }       
+            tempH += 180;
+        }
     });
-
-    $(".white").on("click",function(){
-        alert("osman");
-    });
-    
 });
