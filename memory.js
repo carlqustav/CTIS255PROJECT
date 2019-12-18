@@ -55,39 +55,19 @@ $(function () {
 
         selected = 0;
 
-        //Grading Criteria 3:fadeIn/fadeOut
+        //Grading Criteria 3 : fadeIn/fadeOut
         $("#cover").fadeOut(1000,function(){
             $("#game").fadeIn(1000);
         });
         
 
-        //Grading Criteria 5,7 : Random boxes, Checking sequenceNOTCOMPLETE. 
+        //Grading Criteria 5 : Random boxes 
         for (var i = 0; i < 4; i++) {
             tempW = 40;
             for (var j = 0; j < 4; j++) {
                 if (rndArea[i][j]) {
-                    var tempDiv = $(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`)
-                        .on('click', function () { 
-                            if($(this).text() != currBox){
-                                $("#main").after(`<div id="win"><p>You failed in level ${zorluk}. Press F5 to play again.</p></div>`);
-                                $("#main").css({"box-shadow":"0px 0px 25px 0px red"});
-                                $("#win").css({"box-shadow":"0px 0px 25px 0px red"});
-                                $(this).css({"box-shadow":"0px 0px 25px 0px red"});
-                                $(this).parent().children().off();
-                            }
-                            else{
-                                if(currBox  == zorluk){
-                                    $("#main").after(`<div id="win"><p>You completed level ${zorluk}. Press F5 to play again.</p></div>`);
-                                    $("#main").css({"box-shadow":"0px 0px 25px 0px green"});
-                                    $("#win").css({"box-shadow":"0px 0px 25px 0px green"});
-                                    $(this).css({"box-shadow":"0px 0px 25px 0px green"});
-                                }
-                                else{
-                                    currBox++;
-                                    $(this).css({"box-shadow":"0px 0px 25px 0px green"});
-                                }
-                            }
-                        }).text(divRnd[selected++]);
+                    var tempDiv = $(`<div class="white" style="display:none;left:${tempW}px;top:${tempH}px;">${++selected}</div>`);
+                        
                     $("#game").prepend(tempDiv);
 
                     div.push(tempDiv);
@@ -97,6 +77,50 @@ $(function () {
             tempH += 180;
         }    
 
+        animateNumber(div,0);
+        
     });
+
 });
 
+//Grading Criteria 6: recursive function to create an animation stack
+function animateNumber(div,i){
+    if(i != div.length){
+        div[i].fadeIn(1000,function(){
+            div[i].delay(1000);
+            div[i].css({"color":"white"});
+            animateNumber(div,++i);
+        }); 
+    }
+    else{
+        whiteEventBinding();
+    }
+}
+//Grading Criteria 7 : Sequence checking
+function whiteEventBinding(){
+    $(function(){
+        $("#game").on('click','div', function () { 
+
+            if($(this).text() != currBox){
+                $("#main").after(`<div id="win"><p>You failed in level ${zorluk}. Press F5 to play again.</p></div>`);
+                $("#main").css({"box-shadow":"0px 0px 25px 0px red"});
+                $("#win").css({"box-shadow":"0px 0px 25px 0px red"});
+                $(this).css({"box-shadow":"0px 0px 25px 0px red"});
+                $(this).parent().children().off();
+            }
+            else{
+                if(currBox  == zorluk){
+                    $("#main").after(`<div id="win"><p>You completed level ${zorluk}. Press F5 to play again.</p></div>`);
+                    $("#main").css({"box-shadow":"0px 0px 25px 0px green"});
+                    $("#win").css({"box-shadow":"0px 0px 25px 0px green"});
+                    $(this).css({"box-shadow":"0px 0px 25px 0px green"});
+                    $(this).parent().children().off();
+                }
+                else{
+                    currBox++;
+                    $(this).css({"box-shadow":"0px 0px 25px 0px green"});
+                }
+            }
+        });
+    });
+}

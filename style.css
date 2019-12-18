@@ -37,6 +37,7 @@ p{
     width:820px;
     border-radius: 20px;
     display: none;
+    /*Grading Criteria 4: Blueish background*/
     background-image: url("memorybackground.jpg");
 }
 
