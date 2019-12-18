@@ -25,7 +25,7 @@ p{
     position: relative;
     height:700px;
     width:820px;
-    margin:80px auto;
+    margin:130px auto 0 auto;
     padding:20px;
     text-align: center;
     letter-spacing: 2px;
@@ -79,8 +79,13 @@ p{
 }
 
 select{
-    font-size:15px;
-    width: 40px;
+    margin-top:10px;
+    font-size:20px;
+    width: 70px;
+    height:40px;
+}
+
+option{
     text-align: center;
 }
 
@@ -117,4 +122,14 @@ button:hover{
     color:darkgray;
     border-radius: 10px;
     background-color: white;
+}
+
+#win{
+    box-shadow: 0px 0px 25px 0px rgba(255,255,255,1);
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px 0;
+    width:820px;
+    text-align: center;
+    margin:20px auto;
 }

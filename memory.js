@@ -27,14 +27,11 @@ $(function () {
 
         zorluk = diff.dif.value;
 
-        for (var i = 0; i < zorluk; i++){
-            divRnd[i] = 0;
-        }
+        //Random box initialization
         while(selected != zorluk){
             var i = parseInt(Math.random() * 3 + 1);
             var j = parseInt(Math.random() * 3 + 1);
             
-        
             if (!rndArea[i][j]) {
                 rndArea[i][j] = true;
                 selected++;
@@ -42,6 +39,11 @@ $(function () {
         }
 
         selected = 0;
+
+        //Random sequence initialization
+        for (var i = 0; i < zorluk; i++){
+            divRnd[i] = 0;
+        }
 
         while(selected != zorluk){
             var k = parseInt(Math.random() * zorluk);
@@ -65,20 +67,24 @@ $(function () {
             for (var j = 0; j < 4; j++) {
                 if (rndArea[i][j]) {
                     var tempDiv = $(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`)
-                        .on('click', function () {
-                            
+                        .on('click', function () { 
                             if($(this).text() != currBox){
-                                $("#main").after(`<h2 id="win">You Lose. Press F5 to play again.</h2>`);
+                                $("#main").after(`<div id="win"><p>You failed in level ${zorluk}. Press F5 to play again.</p></div>`);
                                 $("#main").css({"box-shadow":"0px 0px 25px 0px red"});
+                                $("#win").css({"box-shadow":"0px 0px 25px 0px red"});
+                                $(this).css({"box-shadow":"0px 0px 25px 0px red"});
                                 $(this).parent().children().off();
                             }
                             else{
                                 if(currBox  == zorluk){
-                                    $("#main").after(`<h2 id="win">You Win. Press F5 to play again.</h2>`);
+                                    $("#main").after(`<div id="win"><p>You completed level ${zorluk}. Press F5 to play again.</p></div>`);
                                     $("#main").css({"box-shadow":"0px 0px 25px 0px green"});
+                                    $("#win").css({"box-shadow":"0px 0px 25px 0px green"});
+                                    $(this).css({"box-shadow":"0px 0px 25px 0px green"});
                                 }
                                 else{
                                     currBox++;
+                                    $(this).css({"box-shadow":"0px 0px 25px 0px green"});
                                 }
                             }
                         }).text(divRnd[selected++]);
