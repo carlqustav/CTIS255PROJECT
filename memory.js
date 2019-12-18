@@ -20,6 +20,8 @@ for (var i = 0; i < 4; i++) {
 }
 
 $(function () {
+    //Grading Criteria 2: Cover appereance animation
+    $("#main").animate({opacity:1},1000);
 
     $("button").click(function () {
 
@@ -51,12 +53,13 @@ $(function () {
 
         selected = 0;
 
-        $("#cover").fadeOut(1000);
-        $("#main").animate({ "background-color": "rgba(0,0,0,0)" }, 'slow', function () {
-            $("#main").css({ "background-image": `url("memorybackground.jpg")` },{"opacity":"0"})
-                .animate({"opacity":"1"});
+        //Grading Criteria 3:fadeIn/fadeOut
+        $("#cover").fadeOut(1000,function(){
+            $("#game").fadeIn(1000);
         });
+        
 
+        //Grading Criteria 5,7 : Random boxes, Checking sequenceNOTCOMPLETE. 
         for (var i = 0; i < 4; i++) {
             tempW = 40;
             for (var j = 0; j < 4; j++) {
@@ -64,21 +67,22 @@ $(function () {
                     var tempDiv = $(`<div class="white" style="left:${tempW}px;top:${tempH}px;"></div>`)
                         .on('click', function () {
                             
-                            
                             if($(this).text() != currBox){
-                                alert("FAIL");
+                                $("#main").after(`<h2 id="win">You Lose. Press F5 to play again.</h2>`);
+                                $("#main").css({"box-shadow":"0px 0px 25px 0px red"});
                                 $(this).parent().children().off();
                             }
                             else{
                                 if(currBox  == zorluk){
-                                    alert("WIN");
+                                    $("#main").after(`<h2 id="win">You Win. Press F5 to play again.</h2>`);
+                                    $("#main").css({"box-shadow":"0px 0px 25px 0px green"});
                                 }
                                 else{
                                     currBox++;
                                 }
                             }
                         }).text(divRnd[selected++]);
-                    $("#main").prepend(tempDiv);
+                    $("#game").prepend(tempDiv);
 
                     div.push(tempDiv);
                 }
@@ -87,7 +91,6 @@ $(function () {
             tempH += 180;
         }    
 
-
-
     });
 });
+
