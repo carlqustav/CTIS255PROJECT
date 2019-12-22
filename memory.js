@@ -1,11 +1,12 @@
 var zorluk = 0;
 var tempW = 0;
-var currBox = 0;
+var currBox = 1;
 var tempH = 35;
 var count = 1;
 const mainW = 820;
 const mainH = 700;
 
+var ses = new Audio("penclick.wav");
 var divRnd = [];
 var div = [];
 var rndArea = [];
@@ -23,6 +24,8 @@ $(function () {
     $("#main").animate({opacity:1},1000);
 
     $("button").click(function () {
+
+        ses.play();
 
         zorluk = diff.dif.value;
 
@@ -90,7 +93,7 @@ function animateNumber(div,i){
         if(i == 0)
             div[i].children().delay(2000);
 
-        div[i].children().fadeIn(1000).fadeOut(1000,function(){
+        div[i].children().fadeIn(1000).delay(1000).fadeOut(1000,function(){
             animateNumber(div,++i);
         }); 
     }
@@ -100,11 +103,11 @@ function animateNumber(div,i){
 }
 //Grading Criteria 7 : Sequence checking
 function whiteEventBinding(){
-
-    currBox = 1;
-
     $(function(){
-        $("#game").on('click','div', function () { 
+        $("#game").on('click','.white', function () {
+            
+            ses.play();
+
             if($(this).text() != currBox){
                 $("#main").after(`<div id="win"><p>You failed in level ${zorluk}. Press F5 to play again.</p></div>`);
                 $("#main").css({"box-shadow":"0px 0px 25px 0px red"});
@@ -123,6 +126,7 @@ function whiteEventBinding(){
                     $("#game").off('click');
                 }
                 else{
+                    $("#game").off('click',`#game:nth-type(${currBox})`);
                     currBox++;
                     $(this).css({"box-shadow":"0px 0px 25px 0px green"})
                             .css({"background":"lightgreen"});
