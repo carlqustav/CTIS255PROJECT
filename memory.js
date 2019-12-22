@@ -110,7 +110,7 @@ function whiteEventBinding(){
                 $("#main").css({"box-shadow":"0px 0px 25px 0px red"});
                 $("#win").css({"box-shadow":"0px 0px 25px 0px red"});
                 $(this).css({"box-shadow":"0px 0px 25px 0px red"})
-                        .css({"background":"red"});
+                        .css({"background":"rgb(255, 123, 123)"});
                 $("#game").off('click');
             }
             else{
@@ -119,13 +119,13 @@ function whiteEventBinding(){
                     $("#main").css({"box-shadow":"0px 0px 25px 0px green"});
                     $("#win").css({"box-shadow":"0px 0px 25px 0px green"});
                     $(this).css({"box-shadow":"0px 0px 25px 0px green"})
-                            .css({"background":"green"});
+                            .css({"background":"lightgreen"});
                     $("#game").off('click');
                 }
                 else{
                     currBox++;
                     $(this).css({"box-shadow":"0px 0px 25px 0px green"})
-                            .css({"background":"green"});
+                            .css({"background":"lightgreen"});
                 }
             }
         });
