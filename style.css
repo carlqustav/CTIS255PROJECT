@@ -4,7 +4,7 @@
 }
 
 body{
-    background-image: url("background.jpg");
+    background-image: url("img/background.jpg");
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     color:rgb(54, 51, 51);
 }
@@ -38,7 +38,7 @@ p{
     border-radius: 20px;
     display: none;
     /*Grading Criteria 4: Blueish background*/
-    background-image: url("memorybackground.jpg");
+    background-image: url("img/memorybackground.jpg");
 }
 
 #header{
@@ -71,7 +71,7 @@ p{
 #pp{
     width:150px;
     height:150px;
-    background-image: url("pp.jpg");
+    background-image: url("img/pp.jpg");
     border-radius: 50%;
 }
 
