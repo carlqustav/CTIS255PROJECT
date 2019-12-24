@@ -104,8 +104,8 @@ function animateNumber(div,i){
 //Grading Criteria 7 : Sequence checking
 function whiteEventBinding(){
     $(function(){
-        $("#game").on('click','.white', function () {
-            
+        $("#game .white").on('click', function () {
+            $(this).off('click');
             ses.play();
 
             if($(this).text() != currBox){
@@ -114,7 +114,7 @@ function whiteEventBinding(){
                 $("#win").css({"box-shadow":"0px 0px 25px 0px red"});
                 $(this).css({"box-shadow":"0px 0px 25px 0px red"})
                         .css({"background":"rgb(255, 123, 123)"});
-                $("#game").off('click');
+                $("#game .white").off('click');
             }
             else{
                 if(currBox  == zorluk){
@@ -123,10 +123,10 @@ function whiteEventBinding(){
                     $("#win").css({"box-shadow":"0px 0px 25px 0px green"});
                     $(this).css({"box-shadow":"0px 0px 25px 0px green"})
                             .css({"background":"lightgreen"});
-                    $("#game").off('click');
+                    $("#game .white").off('click');
                 }
                 else{
-                    $("#game").off('click',`#game:nth-type(${currBox})`);
+                    $("#game .white").off('click',`#game:nth-type(${currBox})`);
                     currBox++;
                     $(this).css({"box-shadow":"0px 0px 25px 0px green"})
                             .css({"background":"lightgreen"});
